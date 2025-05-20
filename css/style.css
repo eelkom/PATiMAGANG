@@ -43,11 +43,18 @@ a {
   top: 0;
 }
 
-.footer {
-  left: 0;
-  right: 0;
-  height: 44px;
+.title-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   font-weight: 700;
-  font-size: 1.1em;
-  padding-bottom: 17px;
+}
+
+.title-container .main-logo {
+  font-size: 2rem;
+}
+.title-container .sub-logo {
+  font-size: 1rem;
 }
