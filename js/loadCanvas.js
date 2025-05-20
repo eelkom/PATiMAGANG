@@ -8,15 +8,15 @@ export default function loadCanvas() {
   container.appendChild(canvas);
   console.log(container);
 
-  const dumy = [1, 2, 3, 4, 5, 6, 7];
+  const dumy = [1, 2, 3, 3, 6, 5, 4, 3];
   const state = {
     isDown: false,
     moveX: 0,
     offsetX: 0,
   };
   let pixelRatio = window.devicePixelRatio > 1 ? 2 : 1;
-  let width = document.body.clientWidth;
-  let height = document.body.clientHeight;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
 
   function init() {
     window.addEventListener("resize", () => {
@@ -39,8 +39,8 @@ export default function loadCanvas() {
   }
 
   function resize() {
-    width = document.body.clientWidth;
-    height = document.body.clientHeight;
+    width = window.innerWidth;
+    height = window.innerHeight;
     canvas.width = width * pixelRatio;
     canvas.height = height * pixelRatio;
     ctx.scale(pixelRatio, pixelRatio);
@@ -57,28 +57,40 @@ export default function loadCanvas() {
   }
 
   let rotate = 0;
+
   function makePolygon() {
     let x = width / 2;
-    let y = height / 1;
-    let radius = height / 3;
+    let y = height / 0.8;
+    // let y = height / 2;
+    // let radius = width > height ? height / 1.5 : width / 1.5;
+    // let radius = width / 1.5;
+    let radius = height / 2.5;
     let sides = dumy.length;
 
     ctx.save();
+    ctx.fillStyle = "rgba(255, 127, 80, 1)";
+
     const angle = PI2 / sides;
+    const angle2 = PI2 / 4;
 
     ctx.translate(x, y);
     rotate += state.moveX * 0.008;
     ctx.rotate(rotate);
+
     for (let i = 0; i < sides; i++) {
       const px = radius * Math.cos(angle * i);
       const py = radius * Math.sin(angle * i);
 
-      ctx.fillStyle = "rgba(255, 127, 80, 1)";
+      ctx.save();
+      ctx.translate(px, py);
 
+      ctx.rotate(angle * i);
       ctx.beginPath();
-      ctx.arc(px, py, 10, 0, PI2, false);
+
+      ctx.roundRect(-10, -30, 150, 100, 12);
       ctx.fill();
       ctx.closePath();
+      ctx.restore();
     }
     ctx.restore();
   }
