@@ -1,12 +1,15 @@
+import openModal from "./openModal.js";
+
 export default function loadCanvas(image) {
   const PI2 = Math.PI * 2;
+  const cardData = [];
 
   const container = document.querySelector(".canvas-container");
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   container.appendChild(canvas);
 
-  const dumy = [1, 2, 3, 3, 6, 5, 4, 3];
+  const videoCount = 10;
   const state = {
     isDown: false,
     moveX: 0,
@@ -28,6 +31,12 @@ export default function loadCanvas(image) {
     });
     document.addEventListener("pointerup", () => {
       onUp();
+    });
+    document.addEventListener("dblclick", (e) => {
+      onCheck(e);
+    });
+    document.addEventListener("touch", (e) => {
+      onCheck(e);
     });
 
     window.requestAnimationFrame(() => {
@@ -60,7 +69,7 @@ export default function loadCanvas(image) {
     let x = width / 2;
     let y = width > 700 ? height / 0.8 : height / 0.9;
     let radius = width > 700 ? height / 2.5 : height / 3.5;
-    let sides = dumy.length;
+    let sides = videoCount;
 
     ctx.save();
     ctx.fillStyle = "rgba(255, 127, 80, 1)";
@@ -74,6 +83,15 @@ export default function loadCanvas(image) {
     for (let i = 0; i < sides; i++) {
       const px = radius * Math.cos(angle * i);
       const py = radius * Math.sin(angle * i);
+
+      cardData[i] = {
+        cx: px + x, // 전체 기준 x 위치
+        cy: py + y, // 전체 기준 y 위치
+        width: 160 * 1.3,
+        height: 90 * 1.3,
+        angle: angle * i + rotate, // 실제 회전 각도
+        index: (i - Math.round(rotate / angle) + sides) % sides,
+      };
 
       ctx.save();
       ctx.translate(px, py);
@@ -91,6 +109,7 @@ export default function loadCanvas(image) {
       ctx.closePath();
       ctx.restore();
     }
+    console.log(cardData);
     ctx.restore();
   }
 
@@ -98,6 +117,31 @@ export default function loadCanvas(image) {
     state.isDown = true;
     state.moveX = 0;
     state.offsetX = e.offsetX;
+  }
+
+  function onCheck(e) {
+    const mx = e.clientX;
+    const my = e.clientY;
+
+    for (let card of cardData) {
+      // 좌표 변환 (회전 고려)
+      const dx = mx - card.cx;
+      const dy = my - card.cy;
+
+      const angle = -card.angle;
+      const rx = dx * Math.cos(angle) - dy * Math.sin(angle);
+      const ry = dx * Math.sin(angle) + dy * Math.cos(angle);
+
+      if (
+        rx >= -card.width / 2 &&
+        rx <= card.width / 2 &&
+        ry >= -card.height / 2 &&
+        ry <= card.height / 2
+      ) {
+        openModal(card.index);
+        break;
+      }
+    }
   }
 
   function onMove(e) {
