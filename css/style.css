@@ -3,6 +3,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color: #333333;
 }
 
 canvas {
@@ -12,7 +13,7 @@ canvas {
 }
 
 a {
-  color: black;
+  color: white;
   text-decoration: none;
 }
 
@@ -30,12 +31,12 @@ a {
 .nav-container .logo {
   margin-right: auto;
   font-size: 1.4rem;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .nav-container .about-logo {
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .nav-sticky .nav-container {
@@ -50,6 +51,7 @@ a {
   justify-content: center;
   flex-direction: column;
   font-weight: 700;
+  color: white;
 }
 
 .title-container .main-logo {
