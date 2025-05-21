@@ -1,12 +1,10 @@
-export default function loadCanvas() {
+export default function loadCanvas(image) {
   const PI2 = Math.PI * 2;
-  console.log(PI2);
 
   const container = document.querySelector(".canvas-container");
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   container.appendChild(canvas);
-  console.log(container);
 
   const dumy = [1, 2, 3, 3, 6, 5, 4, 3];
   const state = {
@@ -47,7 +45,7 @@ export default function loadCanvas() {
   }
 
   function animate() {
-    ctx.clearRect(0, 0, width, height);
+    // ctx.clearRect(0, 0, width, height);
     makePolygon();
     window.requestAnimationFrame(() => {
       animate();
@@ -60,18 +58,14 @@ export default function loadCanvas() {
 
   function makePolygon() {
     let x = width / 2;
-    let y = height / 0.8;
-    // let y = height / 2;
-    // let radius = width > height ? height / 1.5 : width / 1.5;
-    // let radius = width / 1.5;
-    let radius = height / 2.5;
+    let y = width > 700 ? height / 0.8 : height / 0.9;
+    let radius = width > 700 ? height / 2.5 : height / 3.5;
     let sides = dumy.length;
 
     ctx.save();
     ctx.fillStyle = "rgba(255, 127, 80, 1)";
 
     const angle = PI2 / sides;
-    const angle2 = PI2 / 4;
 
     ctx.translate(x, y);
     rotate += state.moveX * 0.008;
@@ -83,12 +77,16 @@ export default function loadCanvas() {
 
       ctx.save();
       ctx.translate(px, py);
-
       ctx.rotate(angle * i);
-      ctx.beginPath();
 
-      ctx.roundRect(-10, -30, 150, 100, 12);
-      ctx.fill();
+      ctx.globalAlpha = 0.4;
+      ctx.beginPath();
+      ctx.roundRect(-10, -30, 160 * 1.3, 90 * 1.3, 12);
+      ctx.clip();
+
+      ctx.drawImage(image, -10, -30, 160 * 1.3, 90 * 1.3);
+
+      // ctx.fill();
       ctx.closePath();
       ctx.restore();
     }

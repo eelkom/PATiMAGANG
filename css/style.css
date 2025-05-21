@@ -38,6 +38,11 @@ a {
   font-weight: 700;
 }
 
+.nav-container .about-logo {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
 .nav-sticky .nav-container {
   position: fixed;
   top: 0;
