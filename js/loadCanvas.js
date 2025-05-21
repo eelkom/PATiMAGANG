@@ -73,7 +73,6 @@ export default function loadCanvas(image) {
     let sides = 7; // 직접 수정
 
     ctx.save();
-    // ctx.fillStyle = "rgba(255, 127, 80, 1)";
 
     const angle = PI2 / sides;
 
@@ -88,8 +87,8 @@ export default function loadCanvas(image) {
       cardData[i] = {
         cx: px + x, // 전체 기준 x 위치
         cy: py + y, // 전체 기준 y 위치
-        width: 50 * ratio,
-        height: 40 * ratio,
+        width: 50 * (ratio + 1),
+        height: 40 * (ratio + 1),
         angle: angle * i + rotate, // 실제 회전 각도
         index: (i - Math.round(rotate / angle) + sides) % sides,
       };
