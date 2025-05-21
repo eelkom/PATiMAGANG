@@ -79,9 +79,10 @@ export default function loadCanvas(image) {
       ctx.translate(px, py);
       ctx.rotate(angle * i);
 
-      ctx.globalAlpha = 0.4;
+      ctx.globalAlpha = 0.3;
       ctx.beginPath();
       ctx.roundRect(-10, -30, 160 * 1.3, 90 * 1.3, 12);
+      // ctx.arc(px, py, 50, 0, PI2, false);
       ctx.clip();
 
       ctx.drawImage(image, -10, -30, 160 * 1.3, 90 * 1.3);

@@ -1,12 +1,14 @@
 import checkNavPos from "./checkNavPos.js";
 import loadCanvas from "./loadCanvas.js";
 
+const image = new Image();
+image.src = "../src/PATiMAGANG.png";
+
 function init() {
-  const image = new Image();
-  image.src = "../src/PATiMAGANG.png";
   checkNavPos();
-  image.onload = () => {
-    loadCanvas(image);
-  };
+  loadCanvas(image);
 }
-init();
+
+image.onload = () => {
+  init();
+};
