@@ -1,6 +1,6 @@
 import openModal from "./openModal.js";
 
-export default function loadCanvas(image) {
+export default function loadCanvas(images) {
   const PI2 = Math.PI * 2;
   const cardData = [];
 
@@ -9,7 +9,6 @@ export default function loadCanvas(image) {
   const ctx = canvas.getContext("2d");
   container.appendChild(canvas);
 
-  const videoCount = 10;
   const state = {
     isDown: false,
     moveX: 0,
@@ -69,7 +68,7 @@ export default function loadCanvas(image) {
     let x = width / 2;
     let y = width > 700 ? height / 0.8 : height / 0.9;
     let radius = width > 700 ? height / 2.5 : height / 3.5;
-    let sides = videoCount;
+    let sides = images.length;
 
     ctx.save();
     ctx.fillStyle = "rgba(255, 127, 80, 1)";
@@ -87,8 +86,8 @@ export default function loadCanvas(image) {
       cardData[i] = {
         cx: px + x, // 전체 기준 x 위치
         cy: py + y, // 전체 기준 y 위치
-        width: 160 * 1.3,
-        height: 90 * 1.3,
+        width: 40 * 3,
+        height: 50 * 3,
         angle: angle * i + rotate, // 실제 회전 각도
         index: (i - Math.round(rotate / angle) + sides) % sides,
       };
@@ -99,17 +98,15 @@ export default function loadCanvas(image) {
 
       ctx.globalAlpha = 0.1;
       ctx.beginPath();
-      ctx.roundRect(-10, -30, 160 * 1.3, 90 * 1.3, 12);
+      ctx.roundRect(-10, -30, 50 * 3, 40 * 3, 12);
       // ctx.arc(px, py, 50, 0, PI2, false);
       ctx.clip();
 
-      ctx.drawImage(image, -10, -30, 160 * 1.3, 90 * 1.3);
-
+      ctx.drawImage(images[i], -10, -30, 50 * 3, 40 * 3);
       // ctx.fill();
       ctx.closePath();
       ctx.restore();
     }
-    console.log(cardData);
     ctx.restore();
   }
 

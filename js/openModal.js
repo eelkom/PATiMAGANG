@@ -3,13 +3,13 @@ export default function openModal(index) {
   const frame = document.querySelector(".video-frame");
 
   const youtubeUrls = [
-    "https://youtu.be/sWoH1Do0rrs?si=nQ2Kq2gEZkqfHpV9",
-    "https://youtu.be/UC5kFgq9OhE?si=zl6JN2eHLFDja5Xh",
-    "https://youtu.be/yCW2h9TEoVM?si=IkQKfmN_fEhJXwde",
-    "https://youtu.be/KsQknNu-bdM?si=0zkaI-Yv_zBe7755",
-    "https://youtu.be/Wb7WLvAFiwg?si=XOodjGB32H4CxDsL",
-    "https://youtu.be/I_zy5VkxLi4?si=a1TDzRGwJE9EgiEs",
-    "https://youtu.be/cfMAC_xSg7Y?si=YSy8kc-R-ObmxUcp",
+    "https://youtu.be/I_zy5VkxLi4?si=a1TDzRGwJE9EgiEs", // 샴슈(신환)
+    "https://youtu.be/sWoH1Do0rrs?si=nQ2Kq2gEZkqfHpV9", // 눈마(정기)
+    "https://youtu.be/KsQknNu-bdM?si=0zkaI-Yv_zBe7755", // 눈마(신환)
+    "https://youtu.be/Wb7WLvAFiwg?si=XOodjGB32H4CxDsL", // neo(산환)
+    "https://youtu.be/UC5kFgq9OhE?si=zl6JN2eHLFDja5Xh", // neo(정기)
+    "https://youtu.be/cfMAC_xSg7Y?si=YSy8kc-R-ObmxUcp", // 링링(신환)
+    "https://youtu.be/yCW2h9TEoVM?si=IkQKfmN_fEhJXwde", // 링링(정기)
   ];
 
   const embedUrls = youtubeUrls.map((url) => {
