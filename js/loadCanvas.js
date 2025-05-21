@@ -1,6 +1,6 @@
 import openModal from "./openModal.js";
 
-export default function loadCanvas(images) {
+export default function loadCanvas(image) {
   const PI2 = Math.PI * 2;
   const cardData = [];
 
@@ -65,13 +65,14 @@ export default function loadCanvas(images) {
   let rotate = 0;
 
   function makePolygon() {
+    console.log("hi");
     let x = width / 2;
     let y = width > 700 ? height / 0.8 : height / 0.9;
     let radius = width > 700 ? height / 2.5 : height / 3.5;
-    let sides = images.length;
+    let sides = 7; // 직접 수정
 
     ctx.save();
-    ctx.fillStyle = "rgba(255, 127, 80, 1)";
+    // ctx.fillStyle = "rgba(255, 127, 80, 1)";
 
     const angle = PI2 / sides;
 
@@ -102,7 +103,7 @@ export default function loadCanvas(images) {
       // ctx.arc(px, py, 50, 0, PI2, false);
       ctx.clip();
 
-      ctx.drawImage(images[i], -10, -30, 50 * 3, 40 * 3);
+      ctx.drawImage(image, -10, -30, 50 * 3, 40 * 3);
       // ctx.fill();
       ctx.closePath();
       ctx.restore();
