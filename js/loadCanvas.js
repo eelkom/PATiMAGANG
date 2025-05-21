@@ -67,8 +67,9 @@ export default function loadCanvas(image) {
   function makePolygon() {
     console.log("hi");
     let x = width / 2;
-    let y = width > 700 ? height / 0.8 : height / 0.9;
-    let radius = width > 700 ? height / 2.5 : height / 3.5;
+    let y = width > 700 ? height / 2 : height / 2;
+    let radius = width > 500 ? height / 3 : height / 3.5;
+    let ratio = width > 500 ? 3 : 2.6;
     let sides = 7; // 직접 수정
 
     ctx.save();
@@ -87,8 +88,8 @@ export default function loadCanvas(image) {
       cardData[i] = {
         cx: px + x, // 전체 기준 x 위치
         cy: py + y, // 전체 기준 y 위치
-        width: 40 * 3,
-        height: 50 * 3,
+        width: 50 * ratio,
+        height: 40 * ratio,
         angle: angle * i + rotate, // 실제 회전 각도
         index: (i - Math.round(rotate / angle) + sides) % sides,
       };
@@ -99,11 +100,12 @@ export default function loadCanvas(image) {
 
       ctx.globalAlpha = 0.1;
       ctx.beginPath();
-      ctx.roundRect(-10, -30, 50 * 3, 40 * 3, 12);
-      // ctx.arc(px, py, 50, 0, PI2, false);
-      ctx.clip();
 
-      ctx.drawImage(image, -10, -30, 50 * 3, 40 * 3);
+      const w = 50 * ratio;
+      const h = 40 * ratio;
+      ctx.roundRect(-w / 2, -h / 2, w, h, 12);
+      ctx.clip();
+      ctx.drawImage(image, -w / 2, -h / 2, w, h);
       // ctx.fill();
       ctx.closePath();
       ctx.restore();
