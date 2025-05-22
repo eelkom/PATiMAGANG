@@ -53,7 +53,6 @@ export default function loadCanvas(image) {
   }
 
   function animate() {
-    // ctx.clearRect(0, 0, width, height);
     makePolygon();
     window.requestAnimationFrame(() => {
       animate();
@@ -65,12 +64,11 @@ export default function loadCanvas(image) {
   let rotate = 0;
 
   function makePolygon() {
-    console.log("hi");
     let x = width / 2;
     let y = width > 700 ? height / 2 : height / 2;
     let radius = width > 500 ? height / 3 : height / 3.5;
     let ratio = width > 500 ? 3 : 2.6;
-    let sides = 7; // 직접 수정
+    let sides = 7; // 영상 추가 시 직접 수정
 
     ctx.save();
 
@@ -85,11 +83,11 @@ export default function loadCanvas(image) {
       const py = radius * Math.sin(angle * i);
 
       cardData[i] = {
-        cx: px + x, // 전체 기준 x 위치
-        cy: py + y, // 전체 기준 y 위치
+        cx: px + x,
+        cy: py + y,
         width: 50 * (ratio + 1),
         height: 40 * (ratio + 1),
-        angle: angle * i + rotate, // 실제 회전 각도
+        angle: angle * i + rotate,
         index: (i - Math.round(rotate / angle) + sides) % sides,
       };
 
@@ -105,7 +103,6 @@ export default function loadCanvas(image) {
       ctx.roundRect(-w / 2, -h / 2, w, h, 12);
       ctx.clip();
       ctx.drawImage(image, -w / 2, -h / 2, w, h);
-      // ctx.fill();
       ctx.closePath();
       ctx.restore();
     }
@@ -123,7 +120,6 @@ export default function loadCanvas(image) {
     const my = e.clientY;
 
     for (let card of cardData) {
-      // 좌표 변환 (회전 고려)
       const dx = mx - card.cx;
       const dy = my - card.cy;
 
