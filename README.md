@@ -1,3 +1,3 @@
 # PATiMAGANG
 
-## link: https://patima-gang.vercel.app/
+## link: [PATiMAGANG_Offical](https://patima-gang.vercel.app/)
