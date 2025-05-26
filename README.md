@@ -1,3 +1,3 @@
 ## PATiMAGANG
 ### Link: [PATiMAGANG_Official](https://patima-gang.vercel.app/)
-![Group 22 (12)](https://github.com/user-attachments/assets/3e61ee55-f451-4749-b241-b3c4826a7993)
+![Frame 22](https://github.com/user-attachments/assets/d17aaab8-1ced-464d-a85d-6774c234dc77)
