@@ -10,6 +10,8 @@ export default function openModal(index) {
     "https://youtu.be/UC5kFgq9OhE?si=zl6JN2eHLFDja5Xh", // neo(정기)
     "https://youtu.be/cfMAC_xSg7Y?si=YSy8kc-R-ObmxUcp", // 링링(신환)
     "https://youtu.be/yCW2h9TEoVM?si=IkQKfmN_fEhJXwde", // 링링(정기)
+    "https://youtu.be/zcckhcGhXgM?si=oKXBFT_nGU_U7GfI", // Apt(오픈스테이지) 
+    "https://youtu.be/tseV3F8bvi4?si=Wq8hiUnvYfaMrjA8", // 맨정신(오픈스테이지) 
   ];
 
   const embedUrls = youtubeUrls.map((url) => {
