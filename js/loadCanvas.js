@@ -66,7 +66,7 @@ export default function loadCanvas(image) {
   function makePolygon() {
     let x = width / 2;
     let y = width > 700 ? height / 2 : height / 2;
-    let radius = width > 1200 ? height / 3 : height / 3.5;
+    let radius = width > 1200 ? height / 3 : height / 3.2;
     let ratio = width > 1200 ? 3 : 2.6;
     let sides = 9; // 영상 추가 시 직접 수정
 
